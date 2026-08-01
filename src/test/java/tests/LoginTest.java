@@ -18,5 +18,6 @@ public class LoginTest extends BaseTest {
         LoginPage loginpage=new LoginPage(driver);
         loginpage.login("user1@gmail.com","user1@1234");
         System.out.println(driver.getCurrentUrl());
+        System.out.println("<-----Login Test completed----->");
     }
 }

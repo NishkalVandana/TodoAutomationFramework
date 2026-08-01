@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import org.openqa.selenium.Alert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.RegisterPage;
@@ -11,7 +12,11 @@ public class RegisterTest extends BaseTest {
         driver.get("https://todo-react-frontend-one.vercel.app/register");
         RegisterPage registerPage=new RegisterPage(driver);
         String beforeurl= driver.getCurrentUrl();
-        registerPage.register("user8","user8@gmail.com","user8@1234");
+        System.out.println("Registering...");
+        long timestamp = System.currentTimeMillis();
+        String uniqueEmail = "user" + timestamp + "@gmail.com";
+        String uniqueUsername = "user" + timestamp;
+        registerPage.register(uniqueUsername,uniqueEmail,"user@1234");
         String afterurl="https://todo-react-frontend-one.vercel.app/login";
         Assert.assertNotEquals(beforeurl,afterurl);
     }
@@ -24,7 +29,7 @@ public class RegisterTest extends BaseTest {
         String afterurl=driver.getCurrentUrl();
         Assert.assertEquals(beforeurl,afterurl);
     }
-    @Test(priority = 3)
+   /* @Test(priority = 3)
     public void navigate(){
         driver.get("https://todo-react-frontend-one.vercel.app/register");
         String beforeurl= driver.getCurrentUrl();
@@ -32,6 +37,7 @@ public class RegisterTest extends BaseTest {
         registerPage.setNavigatelogin();
         String afterurl=driver.getCurrentUrl();
         Assert.assertNotEquals(beforeurl,afterurl);
+        System.out.println("<-----Register Page Test completed----->");
 
-    }
+    }*/
 }

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 
 public class HomeTest extends BaseTest {
-    @Test
+    @Test(priority = 1)
     public void clickRegister(){
         driver.get("https://todo-react-frontend-one.vercel.app");
         HomePage home=new HomePage(driver);
@@ -15,13 +15,14 @@ public class HomeTest extends BaseTest {
         Assert.assertNotEquals(actual,driver.getCurrentUrl());
     }
 
-    @Test
+    @Test(priority = 2)
     public void clickLogin(){
         driver.get("https://todo-react-frontend-one.vercel.app");
         HomePage home=new HomePage(driver);
         String actual=driver.getCurrentUrl();
         home.clicklogin();
         Assert.assertNotEquals(actual,driver.getCurrentUrl());
+        System.out.println("<-----HomePage Test completed----->");
     }
 
 }

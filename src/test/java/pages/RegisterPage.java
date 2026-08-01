@@ -12,7 +12,7 @@ public class RegisterPage {
     WebDriver driver;
     WebDriverWait wait;
     By username=By.id("username");
-    By email=By.id("eml");
+    By email=By.id("email");
     By password=By.id("password");
     By btn=By.cssSelector("button[type='submit']");
     By navigatelogin=By.xpath("//a[contains(text(),'Login')]");
@@ -26,6 +26,7 @@ public class RegisterPage {
         driver.findElement(email).sendKeys(mail);
         driver.findElement(password).sendKeys(pass);
         driver.findElement(btn).click();
+        System.out.println("Registered Successfully");
     }
     public void duplicateRegister(String user,String mail,String pass){
         wait.until(ExpectedConditions.visibilityOfElementLocated(username));

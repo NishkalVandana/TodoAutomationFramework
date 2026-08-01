@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class ScreenshotListener implements ITestListener {
     @Override
@@ -33,6 +34,7 @@ public class ScreenshotListener implements ITestListener {
     public void  onTestFailure(ITestResult result){
         ExtentReportManager.test.fail(result.getThrowable());
         Object testlistener=result.getInstance();
+        if (testlistener instanceof BaseTest){
         BaseTest baseTest=(BaseTest) testlistener;
         WebDriver driver=baseTest.driver;
         TakesScreenshot ts=(TakesScreenshot) driver;
@@ -40,11 +42,11 @@ public class ScreenshotListener implements ITestListener {
         String testname=result.getMethod().getMethodName();
         String dest="screenshots/"+testname+".png";
         try {
-            Files.copy(sourcefile.toPath(), Paths.get(dest));
+            Files.copy(sourcefile.toPath(), Paths.get(dest), StandardCopyOption.REPLACE_EXISTING);
             ExtentReportManager.test.addScreenCaptureFromPath("../screenshots/" + testname + ".png");
         }catch (IOException e){
             e.printStackTrace();
-        }
+        }}
     }
     @Override
     public void onFinish(ITestContext context) {
