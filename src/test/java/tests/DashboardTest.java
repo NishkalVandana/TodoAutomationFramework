@@ -14,7 +14,7 @@ public class DashboardTest extends BaseTest {
         return new Object[][]{
                 {"Walk 20 min","Medium"},
                 {"Eat protein food","High"},
-                {"Drink water","High"}
+                {"Drink 2 litres of water","High"}
         };
     }
     @Test
