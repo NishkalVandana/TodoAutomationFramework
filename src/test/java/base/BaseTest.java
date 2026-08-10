@@ -6,21 +6,19 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import utils.DriverFactory;
-
-import java.time.Duration;
+import utils.ConfigReader;
 
 public class BaseTest {
     public WebDriver driver;
     @BeforeClass
     public void setup(){
-        driver=DriverFactory.getDriver("Chrome");
+        driver=DriverFactory.getDriver(ConfigReader.getProperty("browser"));
         driver.manage().window().maximize();
-        driver.get("https://todo-react-frontend-one.vercel.app");
+        driver.get(ConfigReader.getProperty("frontendurl"));
     }
 
     @AfterClass
-    public void tearDown() throws InterruptedException{
-        Thread.sleep(3000);
+    public void tearDown(){
         driver.quit();
     }
 }

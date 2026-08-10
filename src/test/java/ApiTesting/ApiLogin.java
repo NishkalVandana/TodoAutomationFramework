@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-
+import utils.ConfigReader;
 public class ApiLogin{
     @DataProvider(name = "taskData")
     public Object[][] getTaskData() {
@@ -19,11 +19,10 @@ public class ApiLogin{
         };
     }
     String token;
-    String baseUrl = "https://todo-backend-cwhl.onrender.com";
+    String baseUrl=ConfigReader.getProperty("backendurl");
     List<Integer> createdTaskIds = new ArrayList<>();
     @Test
     public void loginTest(){
-
         Response response=given().contentType("application/json").
                 body("{\"email\": \"user1@gmail.com\",\"password\": \"user1@1234\"}").
                 when().post(baseUrl+"/api/login").then()
@@ -46,7 +45,6 @@ public class ApiLogin{
    public void getTasks() {
        //printing Tasks Through Get
        System.out.println("All tasks before update and delete:");
-
        Response response1 = given().header("Authorization", "Bearer " + token)
                .when()
                .get(baseUrl + "/api/tasks")

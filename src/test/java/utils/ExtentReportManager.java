@@ -9,7 +9,7 @@ public class ExtentReportManager {
     public static ExtentTest test;
 
     public static void setupReport() {
-        ExtentSparkReporter reporter = new ExtentSparkReporter("reports/TestReport.html");
+        ExtentSparkReporter reporter = new ExtentSparkReporter(ConfigReader.getProperty("reportpath"));
         extent = new ExtentReports();
         extent.attachReporter(reporter);
     }

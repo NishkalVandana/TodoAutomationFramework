@@ -9,7 +9,7 @@
             <class name="tests.RegisterTest"/>
             <class name="tests.LoginTest"/>
             <class name="tests.DashboardTest"/>
-                <!--<class name="ApiTesting.ApiLogin"/>-->
+<!--            <class name="ApiTesting.ApiLogin"/>-->
         </classes>
     </test>
 </suite>

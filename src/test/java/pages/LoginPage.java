@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
@@ -24,7 +25,7 @@ public class LoginPage {
         driver.findElement(emailField).sendKeys(username);
         driver.findElement(passwordField).sendKeys(password);
         driver.findElement(submitButton).click();
-        wait.until(ExpectedConditions.urlToBe("https://todo-react-frontend-one.vercel.app/dashboard"));
+        wait.until(ExpectedConditions.urlToBe(ConfigReader.getProperty("dashboardurl")));
     }
 
 

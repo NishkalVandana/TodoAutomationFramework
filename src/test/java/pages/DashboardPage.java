@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
@@ -34,7 +35,7 @@ public class DashboardPage {
         return By.xpath("//p[text()='" + taskName + "']/following-sibling::button[contains(text(),'Completed')]");
     }
     public String setAddedTask(String task,String pr){
-        driver.get("https://todo-react-frontend-one.vercel.app/dashboard");
+        driver.get(ConfigReader.getProperty("dashboardurl"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(taskInput));
         driver.findElement(taskInput).sendKeys(task);
         Select priority=new Select(driver.findElement(priorityDropdown));
@@ -59,7 +60,7 @@ public class DashboardPage {
     public String setLogout(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(logout));
         driver.findElement(logout).click();
-        wait.until(ExpectedConditions.urlToBe("https://todo-react-frontend-one.vercel.app/login"));
+        wait.until(ExpectedConditions.urlToBe(ConfigReader.getProperty("loginurl")));
         return  driver.getCurrentUrl();
     }
 
